@@ -1,0 +1,16 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Fri Nov 20 14:43:36 2026
+# Process ID: 15960
+# Current directory: C:/sync/A2026/Architecture/GEI1084_MP1_Team03/02_HDL/final_design
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent30240 C:\sync\A2026\Architecture\GEI1084_MP1_Team03\02_HDL\final_design\mini_projet1.xpr
+# Log file: C:/sync/A2026/Architecture/GEI1084_MP1_Team03/02_HDL/final_design/vivado.log
+# Journal file: C:/sync/A2026/Architecture/GEI1084_MP1_Team03/02_HDL/final_design\vivado.jou
+# Running On: DESKTOP-1025S4N, OS: Windows, CPU Frequency: 2496 MHz, CPU Physical cores: 10, Host memory: 16849 MB
+#-----------------------------------------------------------
+start_gui
+open_project -part xc7vx485tffg1157-1 C:/sync/A2026/Architecture/GEI1084_MP1_Team03/02_HDL/final_design/mini_projet1.xpr
+set_property board_part avnet.com:zuboard_1cg:part0:1.0 [current_project]
+reset_property board_connections [get_projects mini_projet1]
