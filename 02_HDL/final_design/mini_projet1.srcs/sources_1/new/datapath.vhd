@@ -69,6 +69,9 @@ architecture structural of datapath is
             PC,
             PCPlus4,
             PCPlus8         : std_logic_vector(M-1 downto 0); 
+    
+    signal IsrRD2           : std_logic_vector(M-1 downto 0);
+    
 begin
     register_file : entity work.register_file 
     port map(   
@@ -123,12 +126,21 @@ begin
                 A   => PC,
                 RD  => Instr
                 );
+    
+    isr : entity work.ISR
+    port map(
+                A      => RD2,
+                shamt  => InStr(11 downto 7),
+                sh     => InStr(6 downto 5),
+                Y      => IsrRD2
+                );
 
     RA1     <= x"F" when RegSrc(0) else InStr(19 downto 16);
 
     RA2     <= InStr(15 downto 12) when RegSrc(1) else InStr(3 downto 0);
 
-    SrcB    <= ExtImm when ALUSrc else RD2;
+    SrcB    <= ExtImm when ALUSrc else IsrRD2; -- mathieu: je l'ai modifié pour inclure l'ISR
+    -- car il va vers SrcB quand ALUSrc est 0 dans le multiplexeur
     
     Result  <= ReadData when MemToReg else ALUResult;
     
