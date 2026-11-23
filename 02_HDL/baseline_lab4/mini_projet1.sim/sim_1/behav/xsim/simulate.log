@@ -1,7 +1,0 @@
-Time resolution is 1 ps
-Note: ===== RESUME =====
-Instructions verifiees : 20
-Instructions en erreur : 0
-TOUS LES TESTS ONT REUSSI
-Time: 209 ns  Iteration: 0  Process: /tb_top/line__62  File: C:/Users/alexa/my_files/uqtr/architecture/lab_4/lab_4.srcs/sim_1/new/tb_top.vhd
-$stop called at time : 209 ns : File "C:/Users/alexa/my_files/uqtr/architecture/lab_4/lab_4.srcs/sim_1/new/tb_top.vhd" Line 129

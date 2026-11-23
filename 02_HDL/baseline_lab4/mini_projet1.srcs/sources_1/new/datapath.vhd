@@ -32,10 +32,14 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity datapath is
-    generic(N : integer := 4; M : integer := 32);
+    generic(
+            InstructionFile : string := "Instructions.txt";
+            N : integer := 4;
+            M : integer := 32);
   Port(
         clk,
         reset,
+        Link,
         MemToReg,
         MemWrite,
         ALUSrc,
@@ -56,11 +60,13 @@ end datapath;
 
 architecture structural of datapath is
     signal RA1,
-           RA2              : std_logic_vector(N-1 downto 0);
+           RA2,
+           RA3              : std_logic_vector(N-1 downto 0);
            
     signal  SrcA,
             SrcB,
             RD2,
+            WD3,
             ExtImm,
             ALUResult,
             ReadData,
@@ -76,8 +82,8 @@ begin
                 WE3     => RegWrite,
                 A1      => RA1,
                 A2      => RA2,
-                A3      => InStr(15 downto 12),
-                WD3     => Result,
+                A3      => RA3,
+                WD3     => WD3,
                 R15     => PCPlus8,
                 RD1     => SrcA,
                 RD2     => RD2
@@ -119,7 +125,8 @@ begin
                 );
                 
     instruction_memory : entity work.instruction_memory
-    port map(
+    generic map (InstructionFile => InstructionFile)
+    port map(    
                 A   => PC,
                 RD  => Instr
                 );
@@ -133,6 +140,10 @@ begin
     Result  <= ReadData when MemToReg else ALUResult;
     
     PCNext  <= Result when PCSrc else PCPlus4;
+    
+    RA3     <= x"E" when Link = '1' else Instr(15 downto 12);
+    
+    WD3     <= PCPlus4 when Link = '1' else Result;
     
     
     ALUResult_out <= ALUResult;

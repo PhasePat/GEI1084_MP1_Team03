@@ -39,7 +39,24 @@ entity tb_top is
 end tb_top;
 
 architecture Behavioral of tb_top is
+    type test_t is (T_CPM, T_SHIFT, T_BL, T_DEFAULT);
+    
+    constant TEST : test_t := T_BL;
+    
     constant T           : time := 10 ns;
+    
+    function test_name(num : test_t) return string is
+    begin
+        case num is
+            when T_CPM      => return "cmp";
+            when T_SHIFT    => return "shift";
+            when T_BL       => return "bl";
+            when others     => return "default";
+        end case;
+    end function;
+    
+    constant INST_FILE : string := test_name(TEST) & "_inst.txt";
+    constant EXP_FILE  : string := test_name(TEST) & "_exp.txt";
  
     signal clk           : std_logic := '0';
     signal reset         : std_logic := '1';
@@ -52,6 +69,7 @@ begin
     reset <= '1', '0' after 22 ns;
  
     DUT : entity work.top
+        generic map (InstructionFile => INST_FILE)
         port map (
             clk       => clk,
             reset     => reset,
@@ -70,7 +88,7 @@ begin
         variable err_alu  : boolean;
         variable err_data : boolean;
     begin
-        file_open(f, "ExpectedData.txt", read_mode);
+        file_open(f, EXP_FILE, read_mode);
  
         wait until reset = '0';
         wait for 1 ns;

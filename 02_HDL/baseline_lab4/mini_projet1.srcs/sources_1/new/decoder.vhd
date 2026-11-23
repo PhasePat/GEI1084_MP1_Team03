@@ -40,6 +40,7 @@ entity decoder is
         
         Funct       : in std_logic_vector(5 downto 0);
         
+        Link,
         PCS,
         MemToReg,
         MemW,
@@ -70,6 +71,7 @@ begin
     main_decoder : entity work.main_decoder
     port map(
                 Funct5      => Funct(5),
+                Funct4      => Funct(4),
                 Funct0      => Funct(0),               
                 Op          => Op,       
                 Branch      => Branch,
@@ -79,7 +81,8 @@ begin
                 MemToReg    => MemToReg,
                 AluSrc      => AluSrc,                
                 ImmSrc      => ImmSrc,
-                RegSrc      => RegSrc
+                RegSrc      => RegSrc,
+                Link        => Link
                 );         
 
     ALU_decoder : entity work.ALU_decoder
