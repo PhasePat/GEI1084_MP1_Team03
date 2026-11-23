@@ -36,6 +36,7 @@ entity ALU_decoder is
         ALUOp       : in std_logic;
         Funct4_0    : in std_logic_vector(4 downto 0);
         
+        noWrite     : out std_logic;
         ALUControl,
         FlagW       : out std_logic_vector(1 downto 0)
         );
@@ -48,23 +49,30 @@ begin
     process(all)
     begin
     
+        ALUControl <= "00";
+        FlagW      <= "00";
+        noWrite    <= '0';
+        
         if ALUOp then
             case Funct4_1 is
-                when "0100" =>
-                    ALUControl <= "00";
-                when "0010" => 
+                when "0100" =>  -- ADD
+                    ALUControl <= "00";     
+                when "0010" =>  -- SUB
                     ALUControl <= "01";
-                when "0000" => 
+                when "0000" =>  -- AND
                     ALUControl <= "10"; 
-                when "1100" => 
+                when "1100" =>  -- ORR
                     ALUControl <= "11";
+                when "1010" =>  -- CMP
+                    ALUControl <= "01";
+                    noWrite <= '1';
                 when others => 
                     ALUControl <= "00"; 
             end case;
 
             if Funct0 then
                 case Funct4_1 is
-                    when "0100" | "0010" =>
+                    when "0100" | "0010" | "1010" =>
                         FlagW <= "11";
                     when "0000" | "1100" => 
                         FlagW <= "10";

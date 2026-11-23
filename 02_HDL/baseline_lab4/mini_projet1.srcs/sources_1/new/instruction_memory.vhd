@@ -33,6 +33,7 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity instruction_memory is
+  generic(InstructionFile : string := "Instructions.txt");
   port(
         A  : in  STD_LOGIC_VECTOR(31 downto 0);
         RD : out STD_LOGIC_VECTOR(31 downto 0)
@@ -49,7 +50,7 @@ begin
     variable w : std_logic_vector(31 downto 0);
     variable i : integer := 0;
   begin
-    file_open(f, "Instructions.txt", read_mode);
+    file_open(f, InstructionFile, read_mode);
     while not endfile(f) loop
       readline(f, l);
       read(l, w);

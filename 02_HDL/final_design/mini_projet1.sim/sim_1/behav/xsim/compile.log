@@ -1,0 +1,10 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/sync/A2026/Architecture/projet/mini_projet1.srcs/sources_1/new/decoder.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'decoder'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/sync/A2026/Architecture/projet/mini_projet1.srcs/sources_1/new/control_unit.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'control_unit'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/sync/A2026/Architecture/projet/mini_projet1.srcs/sources_1/new/top.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'top'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/sync/A2026/Architecture/projet/mini_projet1.srcs/sim_1/new/tb_top.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_top'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/sync/A2026/Architecture/projet/mini_projet1.srcs/sim_1/new/CMP_TB.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'CMP_TB'

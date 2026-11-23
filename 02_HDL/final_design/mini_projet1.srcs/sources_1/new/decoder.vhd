@@ -56,12 +56,13 @@ end decoder;
 architecture structural of decoder is
     signal branch,
            s_regW,
-           ALUOp        : std_logic;         
+           ALUOp,
+           noWrite_s        : std_logic := '0';         
 begin
 
     pc_logic : entity work.pc_logic
     port map(
-                RegW    => s_regW,
+                RegW    => s_regW and not noWrite_s,
                 Branch  => branch,
                 Rd      => Rd,
                 PCS     => PCS
@@ -87,9 +88,10 @@ begin
                 ALUOp       => ALUOp,
                 Funct4_0     => Funct(4 downto 0),
                 ALUControl  => ALUControl,
-                FlagW       => FlagW
+                FlagW       => FlagW,
+                noWrite => noWrite_s
                 );
                
-    RegW <= s_regW;
+    RegW <= s_regW and not noWrite_s;
 
 end structural;
