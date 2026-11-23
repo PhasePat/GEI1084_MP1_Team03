@@ -34,11 +34,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity main_decoder is
   Port( 
         Funct5,
+        Funct4,
         Funct0      : in std_logic;
         
         Op          : in std_logic_vector(1 downto 0);
 
         Branch,
+        Link,
         ALUOp,
         RegW,
         MemW,
@@ -60,6 +62,7 @@ begin
         MemW        <= '0';
         MemToReg    <= '0';
         AluSrc      <= '0';
+        Link        <= '0';
         ImmSrc      <= "00";
         RegSrc      <= "00";
         
@@ -80,6 +83,8 @@ begin
                 ALUSrc      <= '1';
                 ImmSrc      <= "10";
                 RegSrc      <= "01";
+                RegW        <= Funct4;
+                Link        <= Funct4;
             when others =>
                 Branch      <= '0';
                 ALUOp       <= '0';
@@ -87,6 +92,7 @@ begin
                 MemW        <= '0';
                 MemToReg    <= '0';
                 AluSrc      <= '0';
+                Link        <= '0';
                 ImmSrc      <= "00";
                 RegSrc      <= "00";
         end case;

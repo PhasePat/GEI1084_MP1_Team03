@@ -24,8 +24,8 @@ Compiling architecture behavioral of entity xil_defaultlib.data_memory [data_mem
 Compiling architecture behavioral of entity xil_defaultlib.flopenr [\flopenr(width=32)\]
 Compiling architecture behavioral of entity xil_defaultlib.adder [adder_default]
 Compiling architecture structural of entity xil_defaultlib.program_counter [program_counter_default]
-Compiling architecture behavioral of entity xil_defaultlib.instruction_memory [instruction_memory_default]
-Compiling architecture structural of entity xil_defaultlib.datapath [datapath_default]
+Compiling architecture behavioral of entity xil_defaultlib.instruction_memory [\instruction_memory(instructionf...]
+Compiling architecture structural of entity xil_defaultlib.datapath [\datapath(instructionfile="bl_in...]
 Compiling architecture behavioral of entity xil_defaultlib.pc_logic [pc_logic_default]
 Compiling architecture behavioral of entity xil_defaultlib.main_decoder [main_decoder_default]
 Compiling architecture behavioral of entity xil_defaultlib.ALU_decoder [alu_decoder_default]
@@ -35,6 +35,6 @@ Compiling architecture structural of entity xil_defaultlib.flags_registers [flag
 Compiling architecture behavioral of entity xil_defaultlib.condition_check [condition_check_default]
 Compiling architecture structural of entity xil_defaultlib.conditional_logic [conditional_logic_default]
 Compiling architecture structural of entity xil_defaultlib.control_unit [control_unit_default]
-Compiling architecture structural of entity xil_defaultlib.top [top_default]
+Compiling architecture structural of entity xil_defaultlib.top [\top(instructionfile="bl_inst.tx...]
 Compiling architecture behavioral of entity xil_defaultlib.tb_top
 Built simulation snapshot tb_top_behav

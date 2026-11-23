@@ -60,7 +60,7 @@
     <Option Name="IPUserFilesDir" Val="$PIPUSERFILESDIR"/>
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
-    <Option Name="WTXSimLaunchSim" Val="47"/>
+    <Option Name="WTXSimLaunchSim" Val="54"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -282,16 +282,28 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sim_1/imports/Lab4/ExpectedData.txt">
+      <File Path="$PSRCDIR/sim_1/imports/Lab4/default_exp.txt">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../OneDrive - Université du Québec à Trois-Rivières/Session 5/Architecture des ordinateurs et calcul accéléré/Laboratoires/Lab4/ExpectedData.txt"/>
-          <Attr Name="ImportTime" Val="1794431881"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../OneDrive - Université du Québec à Trois-Rivières/Session 5/Architecture des ordinateurs et calcul accéléré/Laboratoires/Lab4/default_exp.txt"/>
+          <Attr Name="ImportTime" Val="1795403301"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sim_1/imports/Lab4/Instructions.txt">
+      <File Path="$PSRCDIR/sim_1/imports/Lab4/default_inst.txt">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../uqtr/architecture/lab_4/lab_4.srcs/sources_1/imports/Lab4/Instructions.txt"/>
-          <Attr Name="ImportTime" Val="1792860417"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../OneDrive - Université du Québec à Trois-Rivières/Session 5/Architecture des ordinateurs et calcul accéléré/Laboratoires/Lab4/default_inst.txt"/>
+          <Attr Name="ImportTime" Val="1795403743"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sim_1/imports/Mini-Projet1/bl_exp.txt">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../OneDrive - Université du Québec à Trois-Rivières/Session 5/Architecture des ordinateurs et calcul accéléré/Laboratoires/Mini-Projet1/bl_exp.txt"/>
+          <Attr Name="ImportTime" Val="1795403795"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sim_1/imports/Mini-Projet1/bl_inst.txt">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../OneDrive - Université du Québec à Trois-Rivières/Session 5/Architecture des ordinateurs et calcul accéléré/Laboratoires/Mini-Projet1/bl_inst.txt"/>
+          <Attr Name="ImportTime" Val="1795403699"/>
         </FileInfo>
       </File>
       <Config>
@@ -335,7 +347,7 @@
     </Simulator>
   </Simulators>
   <Runs Version="1" Minor="19">
-    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z010clg225-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="true" IncrementalCheckpoint="$PPRDIR/../../../../../../../vivado/lab_2/lab_2.srcs/utils_1/imports/synth_1/top.dcp" WriteIncrSynthDcp="false" State="current" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1" AutoRQSDir="$PPRDIR/../../../../uqtr/architecture/lab_4/lab_4.srcs/utils_1/imports/synth_1">
+    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z010clg225-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="true" WriteIncrSynthDcp="false" State="current" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1" AutoRQSDir="$PPRDIR/../../../../uqtr/architecture/lab_4/lab_4.srcs/utils_1/imports/synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022"/>
         <Step Id="synth_design"/>
