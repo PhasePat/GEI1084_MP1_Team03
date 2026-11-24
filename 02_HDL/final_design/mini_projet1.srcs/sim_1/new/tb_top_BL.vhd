@@ -136,7 +136,7 @@ begin
             end loop;
 
             file_close(f);
-
+            
             if n_err = 0 then
                 report "[" & NAME & "] OK : " & integer'image(n_vec) & " instructions verifiees";
             else
