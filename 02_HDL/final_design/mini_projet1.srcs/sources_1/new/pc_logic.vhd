@@ -45,6 +45,6 @@ end pc_logic;
 architecture behavioral of pc_logic is
 begin
 
-    PCS <= '1' when (Rd = x"F" and ?? RegW) or ?? Branch else '0';
+    PCS <= '1' when (Rd = x"F" and RegW = '1') or Branch = '1' else '0';
     
 end behavioral;

@@ -44,6 +44,7 @@ entity control_unit is
         
         Funct       : in std_logic_vector(5 downto 0);
         
+        Link,
         PCSrc,
         RegWrite,
         MemWrite,
@@ -78,7 +79,8 @@ begin
                 ALUControl  => ALUControl,
                 ImmSrc      => ImmSrc,
                 RegSrc      => RegSrc,
-                FlagW       => FlagW
+                FlagW       => FlagW,
+                Link        => Link
                 );
                 
     conditional_logic : entity work.conditional_logic

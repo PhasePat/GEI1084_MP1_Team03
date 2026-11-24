@@ -56,7 +56,7 @@ begin
 
     process(clk) begin
         if rising_edge(clk) then
-            if WE3 then
+            if WE3 = '1' then
                 reg(to_integer(unsigned(A3))) <= WD3;
             end if;
             

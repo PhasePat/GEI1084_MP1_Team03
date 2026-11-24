@@ -49,7 +49,7 @@ begin
     process(all)
         variable temp_result : unsigned(32 downto 0);
     begin
-        if operation_selector then
+        if operation_selector = '1' then
             temp_result := ('0' & unsigned(A)) + ('0' & not unsigned(B)) + 1;
         else
             temp_result := ('0' & unsigned(A)) + ('0' & unsigned(B));
