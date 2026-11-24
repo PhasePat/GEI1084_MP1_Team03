@@ -1,4 +1,4 @@
-# GEI1084 Mini-project 1 - TeamXX
+# GEI1084 Mini-project 1 - Team03
 
 ## Project objective
 
