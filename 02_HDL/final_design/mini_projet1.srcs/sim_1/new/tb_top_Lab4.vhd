@@ -23,7 +23,6 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.std_logic_textio.all;
 use std.textio.all;
-use std.env.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -126,7 +125,6 @@ begin
                 severity failure;
         end if;
  
-        stop;
         wait;
     end process;
  
