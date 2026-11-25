@@ -49,10 +49,10 @@ architecture behavioral of flopenr is
 begin
     process(clk, reset) begin
 
-        if Reset then
+        if Reset = '1' then
             reg <= (others => '0');
         elsif rising_edge(clk) then
-            if en then
+            if en = '1' then
                 reg <= d;
             end if;
         end if;

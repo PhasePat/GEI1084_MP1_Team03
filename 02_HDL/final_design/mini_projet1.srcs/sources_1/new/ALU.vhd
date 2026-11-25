@@ -82,7 +82,7 @@ begin
                 );
     
     process(all) begin
-        if ALUControl(1) then
+        if ALUControl(1) = '1' then
             internal_result <= logic_result;
         else
             internal_result <= arithmetic_result;

@@ -51,7 +51,7 @@ begin
 
     process(clk) begin
         if rising_edge(clk) then
-            if WE then
+            if WE = '1' then
                 mem(to_integer(unsigned(A(N-1 downto 0)))) <= WD;
             end if;
         end if;
