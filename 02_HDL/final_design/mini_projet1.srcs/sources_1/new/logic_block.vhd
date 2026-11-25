@@ -47,7 +47,7 @@ begin
 
     process(all)
     begin
-        if operation_selector then
+        if operation_selector = '1' then
             result <= A or B;
         else
             result <= A and B;  

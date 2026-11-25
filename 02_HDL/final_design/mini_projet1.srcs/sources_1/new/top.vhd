@@ -32,6 +32,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity top is
+  generic (InstructionFile : string := "Instructions.txt");
   Port( 
         clk,
         reset         : in std_logic;
@@ -47,6 +48,7 @@ architecture structural of top is
            MemToReg,
            MemW,
            ALUSrc,
+           Link,
            RegW             : std_logic;
     
     signal ALUControl,
@@ -60,9 +62,11 @@ architecture structural of top is
 begin
 
     datapath : entity work.datapath
+    generic map (InstructionFile => InstructionFile)
     port map(
                 clk             => clk,
                 reset           => reset,
+                Link            => Link,
                 PCSrc           => PCSrc,
                 MemToReg        => MemToReg,
                 MemWrite        => MemW,
@@ -94,7 +98,8 @@ begin
                 ALUSrc      => ALUSrc,
                 ImmSrc      => ImmSrc,
                 RegSrc      => RegSrc,
-                ALUControl  => ALUControl
+                ALUControl  => ALUControl,
+                Link        => Link
                 );
 
 end structural;

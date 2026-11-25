@@ -49,7 +49,7 @@ begin
             when "01" =>
                 ExtImm <= (19 downto 0 => '0') & InStr(11 downto 0);
             when "10" =>
-                ExtImm <= (5 downto 0 => '0') & InStr(23 downto 0) & (1 downto 0 => '0'); 
+                ExtImm <= (5 downto 0 => Instr(23)) & InStr(23 downto 0) & "00"; 
             when others =>
                 ExtImm <= (others => '0');
         end case;

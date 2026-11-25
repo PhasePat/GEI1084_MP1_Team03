@@ -53,7 +53,7 @@ begin
         FlagW      <= "00";
         noWrite    <= '0';
         
-        if ALUOp then
+        if ALUOp = '1' then
             case Funct4_1 is
                 when "0100" =>  -- ADD
                     ALUControl <= "00";     
@@ -70,7 +70,7 @@ begin
                     ALUControl <= "00"; 
             end case;
 
-            if Funct0 then
+            if Funct0 = '1' then
                 case Funct4_1 is
                     when "0100" | "0010" | "1010" =>
                         FlagW <= "11";
