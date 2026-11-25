@@ -1,0 +1,9 @@
+﻿Test ID;Objectif;État initial;Instruction/séquence;Résultat attendu;Résultat observé;Statut;Preuve
+B1;ordinary B / R14 unchanged;R14=0x000000AA, PC=0x04;"B skip_b1; ADD R2, R14, #0";PC=0x0C, R14=0x000000AA inchange, ALUResult=0x000000AA;ALUResult=0x000000AA;PASS;Waveform tb_top/gen_tests(2) t=49ns
+B2;forward BL;PC=0x10;"BL sub_fwd; ADD R4, R14, #0";PC=0x18, R14=0x00000014, ALUResult=0x00000014;ALUResult=0x00000014;PASS;Waveform tb_top/gen_tests(2) t=69ns
+B3;PC+4 vs PC+8;R14=0x00000014 (issu de BL a 0x10), PC=0x1C;SUB R5, R14, #0x10;ALUResult=0x00000004 (prouve sauvegarde PC+4 et non PC+8);ALUResult=0x00000004;PASS;Waveform tb_top/gen_tests(2) t=79ns
+B4;backward BL;PC=0x2C;"BL sub_back (offset -3); ADD R6, R14, #0";PC=0x24, R14=0x00000030, ALUResult=0x00000030;ALUResult=0x00000030;PASS;Waveform tb_top/gen_tests(2) t=99ns
+B5;conditional BL true;Z=1, PC=0x34;"BLEQ sub_cond; ADD R7, R14, #0";Branchement pris vers 0x3C, R14=0x00000038;ALUResult=0x00000038;PASS;Waveform tb_top/gen_tests(2) t=129ns
+B6;conditional BL false / R14 unchanged;Z=1, R14=0x00000038, PC=0x40;"BLNE sub_cond; ADD R8, R14, #0";Branchement non pris, PC=0x44, R14=0x00000038 inchange;ALUResult=0x00000038;PASS;Waveform tb_top/gen_tests(2) t=149ns
+B7;normal register write after BL;PC=0x48;"MOV R9, #0x42; ADD R10, R9, #8";R9=0x00000042, R10=0x0000004A;ALUResult=0x0000004A;PASS;Waveform tb_top/gen_tests(2) t=169ns
+B8;LR persistence;R14=0x00000038, PC=0x50;ADD R11, R14, #2;R14 conserve 0x00000038, ALUResult=0x0000003A;ALUResult=0x0000003A;PASS;Waveform tb_top/gen_tests(2) t=179ns

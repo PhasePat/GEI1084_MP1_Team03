@@ -1,33 +1,33 @@
-﻿TestID,Feature,Expected,Observed,Status,EvidencePath
-C1,CMP equality / Z,,,,
-C2,CMP positive subtraction,,,,
-C3,CMP negative subtraction,,,,
-C4,CMP carry/borrow-sensitive,,,,
-C5,CMP signed-overflow-sensitive,,,,
-C6,CMP no register write,,,,
-C7,CMP flags drive conditional execution,,,,
-S1,LSL #0,,,,
-S2,LSL #1,,,,
-S3,multi-bit LSL,,,,
-S4,ordinary LSR,,,,
-S5,LSR MSB=1 zero fill,,,,
-S6,shift-to-zero,,,,
-S7,AND shifted,,,,
-S8,ORR shifted,,,,
-S9,unshifted register regression,,,,
-S10,immediate-path regression,,,,
-B1,ordinary B / R14 unchanged,,,,
-B2,forward BL,,,,
-B3,PC+4 vs PC+8,,,,
-B4,backward BL,,,,
-B5,conditional BL true,,,,
-B6,conditional BL false / R14 unchanged,,,,
-B7,normal register write after BL,,,,
-B8,LR persistence,,,,
-R1,baseline arithmetic register,,,,
-R2,baseline logical register,,,,
-R3,baseline immediate,,,,
-R4,LDR,,,,
-R5,STR,,,,
-R6,baseline conditional execution,,,,
-R7,ordinary branch,,,,
+﻿Test ID;Objectif;État initial;Résultat attendu;Résultat observé;Statut;Preuve
+C1;CMP equality / Z;R1=0x00000005, R2=0x00000005, CPSR=0000, PC=0x08;ALUResult=0x00000000, NZCV=0110, R3=0x00000006;ALUResult=0x00000000 puis 0x00000006;PASS;Waveform tb_top/gen_tests(0) t=39ns-49ns
+C2;CMP positive subtraction;R1=0x0000000A, R2=0x00000003, PC=0x18;ALUResult=0x00000007, NZCV=0010, R3=0x0000000C;ALUResult=0x00000007 puis 0x0000000C;PASS;Waveform tb_top/gen_tests(0) t=79ns-89ns
+C3;CMP negative subtraction;R1=0x00000003, R2=0x0000000A, PC=0x20;ALUResult=0xFFFFFFF9, NZCV=1000, R3=0x00000004;ALUResult=0xFFFFFFF9 puis 0x00000004;PASS;Waveform tb_top/gen_tests(0) t=99ns-109ns
+C4;CMP carry/borrow-sensitive;R4=0xFFFFFFFF (via 0-1), R5=0x00000001, PC=0x34;ALUResult=0xFFFFFFFE, NZCV=1010, R3=0x0000000B;ALUResult=0xFFFFFFFE puis 0x0000000B;PASS;Waveform tb_top/gen_tests(0) t=149ns-159ns
+C5;CMP signed-overflow-sensitive;R4=0x80000000 (via 1<<31), R5=0x00000001, PC=0x44;ALUResult=0x7FFFFFFF, NZCV=0011, R3=0x00000015;ALUResult=0x7FFFFFFF puis 0x00000015;PASS;Waveform tb_top/gen_tests(0) t=189ns-199ns
+C6;CMP no register write;R0=0x00000055, R1=0x0A, R2=0x03, PC=0x50;RegWrite=0 sur CMP, R0=0x00000055 intact, ALUResult=0x00000055;ALUResult=0x00000055 a t=229ns;PASS;Assertion tb_top t=229ns prouvant R0 intact
+C7;CMP flags drive conditional execution;R1=0x0A, R2=0x03, R3=0x55, PC=0x58;SUBEQ annule (R3=0x55), ADDNE execute (ALUResult=0x00000056);ALUResult=0x00000056 a t=259ns;PASS;Assertion tb_top t=259ns
+S1;LSL #0;R1=0x0000005A, PC=0x04;ALUResult=0x0000005A, R2=0x0000005A;ALUResult=0x0000005A;PASS;Waveform tb_top/gen_tests(1) t=29ns
+S2;LSL #1;R1=0x0000005A, PC=0x08;ALUResult=0x000000B4, R2=0x000000B4;ALUResult=0x000000B4;PASS;Waveform tb_top/gen_tests(1) t=39ns
+S3;multi-bit LSL;R1=0x0000005A, PC=0x0C;ALUResult=0x000005A0, R2=0x000005A0;ALUResult=0x000005A0;PASS;Waveform tb_top/gen_tests(1) t=49ns
+S4;ordinary LSR;R1=0x0000005A, PC=0x10;ALUResult=0x00000016, R2=0x00000016;ALUResult=0x00000016;PASS;Waveform tb_top/gen_tests(1) t=59ns
+S5;LSR MSB=1 zero fill;R3=0x80000000 (via 1<<31), PC=0x1C;ALUResult=0x08000000 (remplissage 0), R4=0x08000000;ALUResult=0x08000000;PASS;Waveform tb_top/gen_tests(1) t=89ns
+S6;shift-to-zero;R3=0x40000000 (via 1<<30), PC=0x28;ALUResult=0x00000000, R4=0x00000000;ALUResult=0x00000000;PASS;Waveform tb_top/gen_tests(1) t=119ns
+S7;AND shifted;R1=0x0000005A, R5=0x000000FF, PC=0x30;ALUResult=0x00000068, R6=0x00000068;ALUResult=0x00000068;PASS;Waveform tb_top/gen_tests(1) t=139ns
+S8;ORR shifted;R1=0x0000005A, R5=0x000000F0, PC=0x38;ALUResult=0x000000FD, R6=0x000000FD;ALUResult=0x000000FD;PASS;Waveform tb_top/gen_tests(1) t=159ns
+S9;unshifted register regression;R1=0x0000005A, R5=0x000000F0, PC=0x3C;ALUResult=0x0000014A, R7=0x0000014A;ALUResult=0x0000014A;PASS;Waveform tb_top/gen_tests(1) t=169ns
+S10;immediate-path regression;R1=0x0000005A, PC=0x40;ALUResult=0x0000006A, R8=0x0000006A;ALUResult=0x0000006A;PASS;Waveform tb_top/gen_tests(1) t=179ns
+B1;ordinary B / R14 unchanged;R14=0x000000AA, PC=0x04;PC=0x0C, R14=0x000000AA inchange, ALUResult=0x000000AA;ALUResult=0x000000AA;PASS;Waveform tb_top/gen_tests(2) t=49ns
+B2;forward BL;PC=0x10;PC=0x18, R14=0x00000014, ALUResult=0x00000014;ALUResult=0x00000014;PASS;Waveform tb_top/gen_tests(2) t=69ns
+B3;PC+4 vs PC+8;R14=0x00000014 (issu de BL a 0x10), PC=0x1C;ALUResult=0x00000004 (prouve sauvegarde PC+4 et non PC+8);ALUResult=0x00000004;PASS;Waveform tb_top/gen_tests(2) t=79ns
+B4;backward BL;PC=0x2C;PC=0x24, R14=0x00000030, ALUResult=0x00000030;ALUResult=0x00000030;PASS;Waveform tb_top/gen_tests(2) t=99ns
+B5;conditional BL true;Z=1, PC=0x34;Branchement pris vers 0x3C, R14=0x00000038;ALUResult=0x00000038;PASS;Waveform tb_top/gen_tests(2) t=129ns
+B6;conditional BL false / R14 unchanged;Z=1, R14=0x00000038, PC=0x40;Branchement non pris, PC=0x44, R14=0x00000038 inchange;ALUResult=0x00000038;PASS;Waveform tb_top/gen_tests(2) t=149ns
+B7;normal register write after BL;PC=0x48;R9=0x00000042, R10=0x0000004A;ALUResult=0x0000004A;PASS;Waveform tb_top/gen_tests(2) t=169ns
+B8;LR persistence;R14=0x00000038, PC=0x50;R14 conserve 0x00000038, ALUResult=0x0000003A;ALUResult=0x0000003A;PASS;Waveform tb_top/gen_tests(2) t=179ns
+R1;baseline arithmetic register;R1=0x0000000F, R2=0x00000005, PC=0x08;ALUResult=0x00000014 puis 0x0000000A;ALUResult=0x00000014 puis 0x0000000A;PASS;Waveform tb_top/gen_tests(3) t=49ns-59ns
+R2;baseline logical register;R1=0x0000000F, R2=0x00000005, PC=0x10;ALUResult=0x00000005 puis 0x0000000F;ALUResult=0x00000005 puis 0x0000000F;PASS;Waveform tb_top/gen_tests(3) t=69ns-79ns
+R3;baseline immediate;R1=0x0000000F, PC=0x18;ALUResult=0x0000002F, R7=0x0000002F;ALUResult=0x0000002F;PASS;Waveform tb_top/gen_tests(3) t=89ns
+R4;LDR;R0=0x00000000, Mem[0x10]=0x0000002F, PC=0x24;ALUResult=0x00000010 puis 0x00000030;ALUResult=0x00000010 puis 0x00000030;PASS;Waveform tb_top/gen_tests(3) t=119ns-129ns
+R5;STR;R0=0x00000000, R7=0x0000002F, PC=0x20;ALUResult=0x00000010, WriteData=0x0000002F;ALUResult=0x00000010, WriteData=0x0000002F;PASS;Double assertion tb_top t=109ns
+R6;baseline conditional execution;R2=0x00000005, PC=0x2C;ALUResult=0x00000000 puis 0x00000008, R11=0x08;ALUResult=0x00000000 puis 0x00000008;PASS;Waveform tb_top/gen_tests(3) t=139ns-159ns
+R7;ordinary branch;R11=0x00000008, PC=0x38;PC=0x40, ALUResult=0x00000009;ALUResult=0x00000009;PASS;Waveform tb_top/gen_tests(3) t=179ns

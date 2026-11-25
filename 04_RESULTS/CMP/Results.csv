@@ -1,0 +1,8 @@
+﻿Test ID;Objectif;État initial;Instruction/séquence;Résultat attendu;Résultat observé;Statut;Preuve
+C1;CMP equality / Z;R1=0x00000005, R2=0x00000005, CPSR=0000, PC=0x08;"CMP R1, R2; ADDEQ R3, R1, #1";ALUResult=0x00000000, NZCV=0110, R3=0x00000006;ALUResult=0x00000000 puis 0x00000006;PASS;Waveform tb_top/gen_tests(0) t=39ns-49ns
+C2;CMP positive subtraction;R1=0x0000000A, R2=0x00000003, PC=0x18;"CMP R1, R2; ADDGT R3, R1, #2";ALUResult=0x00000007, NZCV=0010, R3=0x0000000C;ALUResult=0x00000007 puis 0x0000000C;PASS;Waveform tb_top/gen_tests(0) t=79ns-89ns
+C3;CMP negative subtraction;R1=0x00000003, R2=0x0000000A, PC=0x20;"CMP R2, R1; ADDMI R3, R2, #1";ALUResult=0xFFFFFFF9, NZCV=1000, R3=0x00000004;ALUResult=0xFFFFFFF9 puis 0x00000004;PASS;Waveform tb_top/gen_tests(0) t=99ns-109ns
+C4;CMP carry/borrow-sensitive;R4=0xFFFFFFFF (via 0-1), R5=0x00000001, PC=0x34;"CMP R4, R5; ADDHI R3, R5, #10";ALUResult=0xFFFFFFFE, NZCV=1010, R3=0x0000000B;ALUResult=0xFFFFFFFE puis 0x0000000B;PASS;Waveform tb_top/gen_tests(0) t=149ns-159ns
+C5;CMP signed-overflow-sensitive;R4=0x80000000 (via 1<<31), R5=0x00000001, PC=0x44;"CMP R4, R5; ADDLT R3, R5, #20";ALUResult=0x7FFFFFFF, NZCV=0011, R3=0x00000015;ALUResult=0x7FFFFFFF puis 0x00000015;PASS;Waveform tb_top/gen_tests(0) t=189ns-199ns
+C6;CMP no register write;R0=0x00000055, R1=0x0A, R2=0x03, PC=0x50;"CMP R1, R2; ADD R3, R0, #0";RegWrite=0 sur CMP, R0=0x00000055 intact, ALUResult=0x00000055;ALUResult=0x00000055 a t=229ns;PASS;Assertion tb_top t=229ns prouvant R0 intact
+C7;CMP flags drive conditional execution;R1=0x0A, R2=0x03, R3=0x55, PC=0x58;"CMP R1, R2; SUBEQ R3, R1, R2; ADDNE R6, R3, #1";SUBEQ annule (R3=0x55), ADDNE execute (ALUResult=0x00000056);ALUResult=0x00000056 a t=259ns;PASS;Assertion tb_top t=259ns

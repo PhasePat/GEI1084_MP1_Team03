@@ -1,0 +1,33 @@
+﻿Test ID;Instruction/séquence
+C1;"CMP R1, R2; ADDEQ R3, R1, #1"
+C2;"CMP R1, R2; ADDGT R3, R1, #2"
+C3;"CMP R2, R1; ADDMI R3, R2, #1"
+C4;"CMP R4, R5; ADDHI R3, R5, #10"
+C5;"CMP R4, R5; ADDLT R3, R5, #20"
+C6;"CMP R1, R2; ADD R3, R0, #0"
+C7;"CMP R1, R2; SUBEQ R3, R1, R2; ADDNE R6, R3, #1"
+S1;MOV R2, R1, LSL #0
+S2;MOV R2, R1, LSL #1
+S3;MOV R2, R1, LSL #4
+S4;MOV R2, R1, LSR #2
+S5;MOV R4, R3, LSR #4
+S6;MOV R4, R3, LSR #31
+S7;AND R6, R5, R1, LSL #2
+S8;ORR R6, R5, R1, LSR #1
+S9;ADD R7, R1, R5
+S10;ADD R8, R1, #0x10
+B1;"B skip_b1; ADD R2, R14, #0"
+B2;"BL sub_fwd; ADD R4, R14, #0"
+B3;SUB R5, R14, #0x10
+B4;"BL sub_back (offset -3); ADD R6, R14, #0"
+B5;"BLEQ sub_cond; ADD R7, R14, #0"
+B6;"BLNE sub_cond; ADD R8, R14, #0"
+B7;"MOV R9, #0x42; ADD R10, R9, #8"
+B8;ADD R11, R14, #2
+R1;"ADD R3, R1, R2; SUB R4, R1, R2"
+R2;"AND R5, R1, R2; ORR R6, R1, R2"
+R3;ADD R7, R1, #0x20
+R4;"LDR R8, [R0, #16]; ADD R9, R8, #1"
+R5;STR R7, [R0, #16]
+R6;"SUBS R10, R2, #5; ADDEQ R11, R2, #3; ADDNE R11, R2, #9"
+R7;"B end_r7; ADD R12, R11, #1"

@@ -1,0 +1,8 @@
+﻿Test ID;Objectif;État initial;Instruction/séquence;Résultat attendu;Résultat observé;Statut;Preuve
+R1;baseline arithmetic register;R1=0x0000000F, R2=0x00000005, PC=0x08;"ADD R3, R1, R2; SUB R4, R1, R2";ALUResult=0x00000014 puis 0x0000000A;ALUResult=0x00000014 puis 0x0000000A;PASS;Waveform tb_top/gen_tests(3) t=49ns-59ns
+R2;baseline logical register;R1=0x0000000F, R2=0x00000005, PC=0x10;"AND R5, R1, R2; ORR R6, R1, R2";ALUResult=0x00000005 puis 0x0000000F;ALUResult=0x00000005 puis 0x0000000F;PASS;Waveform tb_top/gen_tests(3) t=69ns-79ns
+R3;baseline immediate;R1=0x0000000F, PC=0x18;ADD R7, R1, #0x20;ALUResult=0x0000002F, R7=0x0000002F;ALUResult=0x0000002F;PASS;Waveform tb_top/gen_tests(3) t=89ns
+R4;LDR;R0=0x00000000, Mem[0x10]=0x0000002F, PC=0x24;"LDR R8, [R0, #16]; ADD R9, R8, #1";ALUResult=0x00000010 puis 0x00000030;ALUResult=0x00000010 puis 0x00000030;PASS;Waveform tb_top/gen_tests(3) t=119ns-129ns
+R5;STR;R0=0x00000000, R7=0x0000002F, PC=0x20;STR R7, [R0, #16];ALUResult=0x00000010, WriteData=0x0000002F;ALUResult=0x00000010, WriteData=0x0000002F;PASS;Double assertion tb_top t=109ns
+R6;baseline conditional execution;R2=0x00000005, PC=0x2C;"SUBS R10, R2, #5; ADDEQ R11, R2, #3; ADDNE R11, R2, #9";ALUResult=0x00000000 puis 0x00000008, R11=0x08;ALUResult=0x00000000 puis 0x00000008;PASS;Waveform tb_top/gen_tests(3) t=139ns-159ns
+R7;ordinary branch;R11=0x00000008, PC=0x38;"B end_r7; ADD R12, R11, #1";PC=0x40, ALUResult=0x00000009;ALUResult=0x00000009;PASS;Waveform tb_top/gen_tests(3) t=179ns
