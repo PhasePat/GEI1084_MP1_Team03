@@ -1,8 +1,7 @@
 # GEI1084 Mini-project 1 - TeamXX
 
 ## Project objective
-L'objectif du projet était d'améliorer le processeur ARM construit depuis le début de la session. À la fin du laboratoire 4, Le processeur permettait les opérations de data processing,
-d'écriture ou de lecture vers la mémoire et de branchement vers une autre instruction. Au courant du mini projet 1, il sera question d'ajouter 3 fonctionnalités au processeur : le CMP,
+L'objectif du projet était d'améliorer le processeur ARM construit depuis le début de la session. À la fin du laboratoire 4, Le processeur permettait les opérations de data processing, d'écriture ou de lecture vers la mémoire et de branchement vers une autre instruction. Au courant du mini projet 1, il sera question d'ajouter 3 fonctionnalités au processeur : le CMP,
 le BL et le SHIFT.
 
 ## Supported instruction subset
