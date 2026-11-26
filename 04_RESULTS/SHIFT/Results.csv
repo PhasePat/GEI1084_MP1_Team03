@@ -1,0 +1,11 @@
+﻿Test ID;Objectif;État initial;Instruction/séquence;Résultat attendu;Résultat observé;Statut;Preuve
+S1;LSL #0;R1=0x0000005A, PC=0x04;MOV R2, R1, LSL #0;ALUResult=0x0000005A, R2=0x0000005A;ALUResult=0x0000005A;PASS;Waveform tb_top/gen_tests(1) t=29ns
+S2;LSL #1;R1=0x0000005A, PC=0x08;MOV R2, R1, LSL #1;ALUResult=0x000000B4, R2=0x000000B4;ALUResult=0x000000B4;PASS;Waveform tb_top/gen_tests(1) t=39ns
+S3;multi-bit LSL;R1=0x0000005A, PC=0x0C;MOV R2, R1, LSL #4;ALUResult=0x000005A0, R2=0x000005A0;ALUResult=0x000005A0;PASS;Waveform tb_top/gen_tests(1) t=49ns
+S4;ordinary LSR;R1=0x0000005A, PC=0x10;MOV R2, R1, LSR #2;ALUResult=0x00000016, R2=0x00000016;ALUResult=0x00000016;PASS;Waveform tb_top/gen_tests(1) t=59ns
+S5;LSR MSB=1 zero fill;R3=0x80000000 (via 1<<31), PC=0x1C;MOV R4, R3, LSR #4;ALUResult=0x08000000 (remplissage 0), R4=0x08000000;ALUResult=0x08000000;PASS;Waveform tb_top/gen_tests(1) t=89ns
+S6;shift-to-zero;R3=0x40000000 (via 1<<30), PC=0x28;MOV R4, R3, LSR #31;ALUResult=0x00000000, R4=0x00000000;ALUResult=0x00000000;PASS;Waveform tb_top/gen_tests(1) t=119ns
+S7;AND shifted;R1=0x0000005A, R5=0x000000FF, PC=0x30;AND R6, R5, R1, LSL #2;ALUResult=0x00000068, R6=0x00000068;ALUResult=0x00000068;PASS;Waveform tb_top/gen_tests(1) t=139ns
+S8;ORR shifted;R1=0x0000005A, R5=0x000000F0, PC=0x38;ORR R6, R5, R1, LSR #1;ALUResult=0x000000FD, R6=0x000000FD;ALUResult=0x000000FD;PASS;Waveform tb_top/gen_tests(1) t=159ns
+S9;unshifted register regression;R1=0x0000005A, R5=0x000000F0, PC=0x3C;ADD R7, R1, R5;ALUResult=0x0000014A, R7=0x0000014A;ALUResult=0x0000014A;PASS;Waveform tb_top/gen_tests(1) t=169ns
+S10;immediate-path regression;R1=0x0000005A, PC=0x40;ADD R8, R1, #0x10;ALUResult=0x0000006A, R8=0x0000006A;ALUResult=0x0000006A;PASS;Waveform tb_top/gen_tests(1) t=179ns
